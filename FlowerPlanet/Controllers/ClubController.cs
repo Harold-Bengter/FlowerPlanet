@@ -60,8 +60,23 @@ public class ClubController : Controller
             ModelState.AddModelError("", "Photo upload failed");
         }
 
+        return View(clubVM);    
+    }
+    public async Task<IActionResult> Edit(int id)
+    {
+        var club = await _clubRepository.GetByIdAsync(id);
+        if(club == null) return View("Error");
+        var clubVM = new EditClubViewModel
+        {
+            Title = club.Title,
+            Description = club.Description,
+            AddressId = club.AddressId,
+            Address = club.Address,
+            URL = club.Image,
+            ClubCategory = club.ClubCategory
+        };
         return View(clubVM);
-        
+
     }
 }
 
