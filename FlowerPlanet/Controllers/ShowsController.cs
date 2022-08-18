@@ -1,6 +1,7 @@
 ﻿using FlowerPlanet.Data;
 using FlowerPlanet.Interfaces;
 using FlowerPlanet.Models;
+using FlowerPlanet.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,12 @@ namespace FlowerPlanet.Controllers;
 public class ShowsController : Controller
 {
     private readonly IShowsRepository _showsRepository;
+    private readonly IPhotoService _photoService;
 
-    public ShowsController(IShowsRepository showsRepository)
+    public ShowsController(IShowsRepository showsRepository, IPhotoService photoService)
     {
         _showsRepository = showsRepository;
+        _photoService = photoService;
     }
     public async Task<IActionResult> Index()
     {
@@ -29,13 +32,33 @@ public class ShowsController : Controller
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> Create(Shows shows)
-    {
-        if (!ModelState.IsValid)
+    public async Task<IActionResult> Create(CreateShowsViewModel showsVM)
+    { 
+     if(ModelState.IsValid)
         {
-            return View(shows);
+            var result = await _photoService.AddPhotoAsync(showsVM.Image);
+
+    var shows = new Shows
+    {
+        Title = showsVM.Title,
+        Description = showsVM.Description,
+        Image = result.Url.ToString(),
+        Address = new Address
+        {
+            Street = showsVM.Address.Street,
+            city = showsVM.Address.city,
+            state = showsVM.Address.state,
         }
-        _showsRepository.Add(shows);
-        return RedirectToAction("Index");
+    };
+    _showsRepository.Add(shows);
+            return RedirectToAction("Index");
+}
+        else
+        {
+            ModelState.AddModelError("", "Photo upload failed");
+        }
+
+        return View(showsVM);
+        
     }
 }
