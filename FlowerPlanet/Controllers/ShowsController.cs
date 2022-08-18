@@ -24,4 +24,18 @@ public class ShowsController : Controller
         Shows Shows = await _showsRepository.GetByIdAsync(id);
         return View(Shows);
     }
+    public IActionResult Create()
+    {
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> Create(Shows shows)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(shows);
+        }
+        _showsRepository.Add(shows);
+        return RedirectToAction("Index");
+    }
 }
