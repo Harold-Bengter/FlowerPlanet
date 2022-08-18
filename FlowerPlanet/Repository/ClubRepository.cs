@@ -35,6 +35,11 @@ namespace FlowerPlanet.Repository
             return await _context.Club.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public  async Task<Club> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Club.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
+
         public async Task<IEnumerable<Club>> GetClubByCity(string city)
         {
             return await _context.Club.Where(c => c.Address.city.Contains(city)).ToListAsync();
