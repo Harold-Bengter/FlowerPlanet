@@ -1,0 +1,53 @@
+﻿@model Shows    
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container"
+
+    <h1 class="my-4"> page heading
+        <small>Secondary text</small>
+</h1>
+
+
+<div class="row">
+    <div class="col-md-8">
+        <img class="img-fluid" src="https://images.unsplash.com/photo-1657112877156-8c17353c2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="">
+    </div>
+
+   <div class="col-md-4">
+       <h3 class="my-3">Project Description</h3>
+       <p>@Model.Description</p>
+       <h3 class="my-3">Project details</h3>
+        <ul>
+            <li>@Model.Address.Street</li>
+            <li>@Model.Address.city</li>
+            <li>@Model.Address.state</li>
+            <li>@Model.ShowCategory</li>
+        </ul>     
+     </div>
+
+  </div>
+
+<h3 class="my-4">Related projects</h3>
+
+<div class="row">
+
+    <div class="col-md-3 col-sm-6 mb-4">
+        <a href="#">
+            <img class="img-fluid" src="https://images.unsplash.com/photo-1657112877156-8c17353c2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="">
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+        <a href="#">
+            <img class="img-fluid" src="https://images.unsplash.com/photo-1657112877156-8c17353c2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="">
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-4">
+        <a href="#">
+            <img class="img-fluid" src="https://images.unsplash.com/photo-1657112877156-8c17353c2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="">
+        </a>
+    </div>
+</div>
