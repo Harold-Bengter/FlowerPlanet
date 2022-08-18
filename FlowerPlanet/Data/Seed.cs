@@ -13,9 +13,9 @@ public class Seed
 
             context.Database.EnsureCreated();
 
-            if (!context.Club.Any())
+            if (!context.Shows.Any())
             {
-                context.Club.AddRange(new List<Club>()
+                List<Club> clubs = new List<Club>()
                     {
                         new Club()
                         {
@@ -121,7 +121,8 @@ public class Seed
                                 state = "NJ"
                             }
                         }
-                    });
+                    };
+                context.Shows.AddRange((IEnumerable<Shows>)clubs);
                 context.SaveChanges();
             }
             //Shows

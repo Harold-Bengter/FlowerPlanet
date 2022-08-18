@@ -1,10 +1,14 @@
 using FlowerPlanet.Data;
+using FlowerPlanet.Interfaces;
+using FlowerPlanet.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IClubRepository, ClubRepository>();
+builder.Services.AddScoped<IShowsRepository, ShowsRepository>();
 builder.Services.AddDbContext<AppDB>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

@@ -1,4 +1,5 @@
 ﻿using FlowerPlanet.Data;
+using FlowerPlanet.Interfaces;
 using FlowerPlanet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,21 +8,37 @@ namespace FlowerPlanet.Controllers;
 
 public class ClubController : Controller
 {
-    private readonly AppDB _context;
-    public ClubController(AppDB context)
+    private readonly IClubRepository _clubRepository;
+    public ClubController(AppDB context, IClubRepository clubRepository)
     {
-        _context = context;
+        _clubRepository = clubRepository;
     }
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        List<Club> clubs = _context.Club.ToList();
+        IEnumerable<Club> clubs = await _clubRepository.GetAll();
         return View(clubs);
     }
 
-    public IActionResult Detail(int id)
+    public async Task<IActionResult> Detail(int id)
     {
-        Club club = _context.Club.Include(a => a.Address).FirstOrDefault(c => c.Id == id);
+        Club club = await _clubRepository.GetByIdAsync(id);
         return View(club);
+    }
+
+    public IActionResult Create()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Create(Club club)
+    {
+        if(ModelState.IsValid)
+        {
+            return View(club);
+        }
+        _clubRepository.Add(club);
+        return RedirectToAction("Index");
     }
 }
 

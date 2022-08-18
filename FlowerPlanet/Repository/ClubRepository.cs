@@ -32,7 +32,7 @@ namespace FlowerPlanet.Repository
 
         public async Task<Club> GetByIdAsync(int id)
         {
-            return await _context.Club.FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Club.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public async Task<IEnumerable<Club>> GetClubByCity(string city)
@@ -48,7 +48,8 @@ namespace FlowerPlanet.Repository
 
         public bool Update(Club club)
         {
-            throw new NotImplementedException();
+            _context.Update(club);
+            return Save();
         }
     }
 }

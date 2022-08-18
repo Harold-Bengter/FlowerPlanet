@@ -1,4 +1,5 @@
 ﻿using FlowerPlanet.Data;
+using FlowerPlanet.Interfaces;
 using FlowerPlanet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,20 +8,20 @@ namespace FlowerPlanet.Controllers;
 
 public class ShowsController : Controller
 {
-    private readonly AppDB _context;
+    private readonly IShowsRepository _showsRepository;
 
-    public ShowsController(AppDB context)
+    public ShowsController(IShowsRepository showsRepository)
     {
-        _context = context;
+        _showsRepository = showsRepository;
     }
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var shows = _context.Shows.ToList();
+        IEnumerable<Shows> shows = await _showsRepository.GetAll();
         return View(shows);
     }
-    public IActionResult Detail(int id)
+    public async Task<IActionResult> Detail(int id)
     {
-        Shows Shows = _context.Shows.Include(a => a.Address).FirstOrDefault(c => c.Id == id);
+        Shows Shows = await _showsRepository.GetByIdAsync(id);
         return View(Shows);
     }
 }
