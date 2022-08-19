@@ -6,6 +6,7 @@ public interface IShowsRepository
 {
     Task<IEnumerable<Shows>> GetAll();
     Task<Shows> GetByIdAsync(int id);
+    Task<Shows> GetByIdAsyncNoTracking(int id);
     Task<IEnumerable<Shows>> GetShowsByCity(string city);
     bool Add(Shows show);
     bool Update(Shows show);

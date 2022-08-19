@@ -34,6 +34,10 @@ public class ShowsRepository : IShowsRepository
     {
         return await _context.Shows.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
     }
+    public async Task<Shows> GetByIdAsyncNoTracking(int id)
+    {
+        return await _context.Shows.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+    }
 
     public async Task<IEnumerable<Shows>> GetShowsByCity(string city)
     {
