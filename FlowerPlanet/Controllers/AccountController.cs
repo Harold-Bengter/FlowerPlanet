@@ -82,7 +82,7 @@ namespace FlowerPlanet.Controllers
             if(newUserResponse.Succeeded)
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
 
-            return View("Home");
+            return RedirectToAction("Index", "Shows");
         }
 
         [HttpPost]

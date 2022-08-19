@@ -10,7 +10,7 @@ namespace FlowerPlanet.Models
 
         public int? FavPlant { get; set; }
         [ForeignKey("Address")]
-        public int Addressid { get; set; }
+        public int? Addressid { get; set; }
         public Address? Address { get; set; }
         public ICollection<Shows> Shows { get; set; }
         public ICollection<Club> Clubs { get; set; }
