@@ -1,9 +1,10 @@
 ﻿using FlowerPlanet.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlowerPlanet.Data
 {
-    public class AppDB : DbContext
+    public class AppDB : IdentityDbContext<AppUser>
     {
         public AppDB(DbContextOptions<AppDB> options) : base(options)
         {
