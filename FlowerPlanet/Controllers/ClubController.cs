@@ -11,10 +11,12 @@ public class ClubController : Controller
 {
     private readonly IClubRepository _clubRepository;
     private readonly IPhotoService _photoService;
-    public ClubController(IClubRepository clubRepository, IPhotoService photoService)
+    private readonly IHttpContextAccessor _httpcontextAccessor;
+    public ClubController(IClubRepository clubRepository, IPhotoService photoService, IHttpContextAccessor httpcontextAccessor)
     {
         _clubRepository = clubRepository;
         _photoService = photoService;
+        _httpcontextAccessor = httpcontextAccessor;
     }
     public async Task<IActionResult> Index()
     {
@@ -30,6 +32,7 @@ public class ClubController : Controller
 
     public IActionResult Create()
     {
+        var curUser = _httpcontextAccessor.HttpContext.User.GetUserId();
         return View();
     }
     
