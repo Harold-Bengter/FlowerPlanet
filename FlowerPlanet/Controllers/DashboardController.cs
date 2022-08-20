@@ -1,12 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FlowerPlanet.Data;
+using FlowerPlanet.Interfaces;
+using FlowerPlanet.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FlowerPlanet.Controllers
 {
     public class DashboardController : Controller
     {
-        public IActionResult Index()
+        private readonly IDashboardRepository _dashboardrepository;
+        public DashboardController(IDashboardRepository dashboardRepository)
         {
-            return View();
+            _dashboardrepository = dashboardRepository;
+        }
+        public AppDB Context { get; }
+
+        public async Task<IActionResult> Index()
+        {
+            var userShows = await _dashboardrepository.GetAllUserShows();
+            var userClubs = await _dashboardrepository.GetAllUserClubs();
+            var dashbaordViewModel = new DashboardViewModel()
+            {
+                Shows = userShows,
+                Clubs = userClubs,
+            };
+            return View(dashbaordViewModel);
         }
     }
 }
