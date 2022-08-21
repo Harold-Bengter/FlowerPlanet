@@ -16,15 +16,15 @@ public class DashboardRepository : IDashboardRepository
     }
     public async Task<List<Club>> GetAllUserClubs()
     {
-        var curUser = _httpContextAccessor.HttpContext?.User;
-        var userClubs = _context.Club.Where(r => r.Appuser.Id == curUser.ToString());
+        var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+        var userClubs = _context.Club.Where(r => r.Appuser.Id == curUser);
         return userClubs.ToList();
     }
 
     public async Task<List<Shows>> GetAllUserShows()
     {
-        var curUser = _httpContextAccessor.HttpContext?.User;
-        var userShows = _context.Shows.Where(r => r.Appuser.Id == curUser.ToString());
+        var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+        var userShows = _context.Shows.Where(r => r.Appuser.Id == curUser);
         return userShows.ToList();
     }
 }
