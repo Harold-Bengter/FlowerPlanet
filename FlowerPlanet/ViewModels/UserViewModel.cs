@@ -6,5 +6,6 @@ public class UserViewModel
     public string UserName { get; set; }
     public string? FavPlant { get; set; }
     public int? NumPlants { get; set; }
+    public string ProfileImageUrl { get; set; }
    
 }

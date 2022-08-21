@@ -9,11 +9,11 @@
             {
               <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-              @*img class="card-img-top" src="@item.Image" width+"100%" height="225" alt+"card image cap*@
+              <img class="card-img-top" src="@items.ProfileImageUrl" width+"100%" height="225" alt="card image cap">
               <div class="card-body">
                   <p class="card-text">@items.UserName</p>
-                  <p class="card-text">@items.FavPlant</p>
-                  <p class="card-text">@items.NumPlants</p>
+                  <p class="card-text">Favorite plant: @items.FavPlant</p>
+                  <p class="card-text">Number of Plants: @items.NumPlants</p>
                   <div class="d-flex justify-content-between align-items-center">  
                       <div class="btn-group">
                       <a type="btn btn-success" asp-controller="User" asp-action="Detail" asp-route-id="@items.Id"

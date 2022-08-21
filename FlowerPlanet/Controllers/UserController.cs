@@ -24,6 +24,7 @@ public class UserController : Controller
                 UserName = user.UserName,
                 FavPlant = user.FavPlant,
                 NumPlants = user.NumPlants,
+                ProfileImageUrl = user.ProfileImageUrl,
             };
             result.Add(userViewModel);
         }
