@@ -18,14 +18,14 @@ public class UserController : Controller
         List<UserViewModel> result = new List<UserViewModel>();
         foreach(var user in users)
         {
-            var userVIewModel = new UserViewModel()
+            var userViewModel = new UserViewModel()
             {
                 Id = user.Id,
                 UserName = user.UserName,
                 FavPlant = user.FavPlant,
                 NumPlants = user.NumPlants,
             };
-            result.Add(userVIewModel);
+            result.Add(userViewModel);
         }
         return View(result);
     }

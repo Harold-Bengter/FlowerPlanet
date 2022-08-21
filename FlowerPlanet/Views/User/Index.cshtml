@@ -1,13 +1,14 @@
 ﻿@using FlowerPlanet.ViewModels
+@using Microsoft.AspNetCore.Identity
 @model List<UserViewModel>
 
 <div class="album py-5 bg-light">
-    <div class="container"">
+    <div class="container">
         <div class="row">
             @foreach(var items in Model)
             {
               <div class="col-md-4">
-              <div class="cardw mb-4 boc-shadow">
+              <div class="card mb-4 box-shadow">
               @*img class="card-img-top" src="@item.Image" width+"100%" height="225" alt+"card image cap*@
               <div class="card-body">
                   <p class="card-text">@items.UserName</p>
@@ -16,7 +17,7 @@
                   <div class="d-flex justify-content-between align-items-center">  
                       <div class="btn-group">
                       <a type="btn btn-success" asp-controller="User" asp-action="Detail" asp-route-id="@items.Id"
-                      class="btn btn-sm btn-outline-secondary">view</a>
+                               class="btn btn-sm btn-outline-secondary">view</a>
                       @if(User.Identity.IsAuthenticated && User.IsInRole("admin"))
                       {
                           <a asp-controller="Club" asp-action="Edit" asp-route-id="@items.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
