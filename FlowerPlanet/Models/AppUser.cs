@@ -8,7 +8,7 @@ namespace FlowerPlanet.Models
     {
         public int? NumPlants { get; set; }
         public string? FavPlant { get; set; }
-        public string ProfileImageUrl { get; set; }
+        public string? ProfileImageUrl { get; set; }
         public string? City { get; set; }
         public string? State { get; set; }
 
