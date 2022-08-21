@@ -20,14 +20,14 @@
                       @if(User.Identity.IsAuthenticated && User.IsInRole("admin"))
                       {
                           <a asp-controller="Club" asp-action="Edit" asp-route-id="@items.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
-                          <a asp-controller="Club" asp-action="Delete" asp-route-id="@items.Id" class="bntn btn-sm btn-outline-secondary">Delete</a>
+                          <a asp-controller="Club" asp-action="Delete" asp-route-id="@items.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
                       }
-                      </div>
-                      @*<small class="text-muted">@item.ClubCategory</small>*@
-                   </div>
-                 </div>
-               </div>
-             </div>
+                     </div>
+                    @*<small class="text-muted">@item.ClubCategory</small>*@
+                  </div>
+                </div>
+              </div>
+            </div>
             }
         </div>
     </div>

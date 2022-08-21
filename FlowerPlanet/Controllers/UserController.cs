@@ -29,4 +29,17 @@ public class UserController : Controller
         }
         return View(result);
     }
+
+    public async Task<IActionResult> Detail(string id)
+    {
+        var user = await _userRepository.GetUserById(id);
+        var userDetailViewMdoel = new UserDetailViewModel()
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            FavPlant = user.FavPlant,
+            NumPlants = user.NumPlants,
+        };
+        return View(userDetailViewMdoel);
+    }
 }
