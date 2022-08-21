@@ -11,5 +11,5 @@ public class CreateShowsViewModel
     public Address Address { get; set; }
     public IFormFile Image { get; set; }
     public ShowCategory ShowsCategory { get; set; }
-
+    public string AppUserId  { get; set; }
 }

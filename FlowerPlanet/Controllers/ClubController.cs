@@ -32,8 +32,9 @@ public class ClubController : Controller
 
     public IActionResult Create()
     {
-        var curUser = _httpcontextAccessor.HttpContext.User.GetUserId();
-        return View();
+        var curUserId = _httpcontextAccessor.HttpContext.User.GetUserId();
+        var createClubViewModel = new CreateClubViewModel { AppUserId = curUserId };
+        return View(createClubViewModel);
     }
     
     [HttpPost]
@@ -48,6 +49,7 @@ public class ClubController : Controller
                 Title = clubVM.Title,
                 Description = clubVM.Description,
                 Image = result.Url.ToString(),
+                AppUserId = clubVM.AppUserId,
                 Address = new Address
                 {
                     Street = clubVM.Address.Street,

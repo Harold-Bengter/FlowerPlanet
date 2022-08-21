@@ -11,11 +11,13 @@ public class ShowsController : Controller
 {
     private readonly IShowsRepository _showsRepository;
     private readonly IPhotoService _photoService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public ShowsController(IShowsRepository showsRepository, IPhotoService photoService)
+    public ShowsController(IShowsRepository showsRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
     {
         _showsRepository = showsRepository;
         _photoService = photoService;
+        _httpContextAccessor = httpContextAccessor;
     }
     public async Task<IActionResult> Index()
     {
@@ -29,7 +31,9 @@ public class ShowsController : Controller
     }
     public IActionResult Create()
     {
-        return View();
+        var curUserId = _httpContextAccessor.HttpContext?.User.GetUserId();
+        var createShowsViewModel = new CreateShowsViewModel { AppUserId = curUserId };
+        return View(createShowsViewModel);
     }
     [HttpPost]
     public async Task<IActionResult> Create(CreateShowsViewModel showsVM)
@@ -43,6 +47,7 @@ public class ShowsController : Controller
         Title = showsVM.Title,
         Description = showsVM.Description,
         Image = result.Url.ToString(),
+        AppUserId = showsVM.AppUserId,
         Address = new Address
         {
             Street = showsVM.Address.Street,
