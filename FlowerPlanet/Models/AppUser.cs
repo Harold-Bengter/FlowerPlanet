@@ -8,7 +8,7 @@ namespace FlowerPlanet.Models
     {
         public int? NumPlants { get; set; }
 
-        public int? FavPlant { get; set; }
+        public string? FavPlant { get; set; }
         [ForeignKey("Address")]
         public int? Addressid { get; set; }
         public Address? Address { get; set; }
