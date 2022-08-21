@@ -27,4 +27,9 @@ public class DashboardRepository : IDashboardRepository
         var userShows = _context.Shows.Where(r => r.Appuser.Id == curUser);
         return userShows.ToList();
     }
+
+    public async Task<AppUser> GetUserById(string id)
+    {
+        return await _context.Users.FindAsync(id);
+    }
 }
