@@ -1,21 +1,54 @@
-﻿using FlowerPlanet.Models;
+﻿using FlowerPlanet.Helpers;
+using FlowerPlanet.Interfaces;
+using FlowerPlanet.Models;
+using FlowerPlanet.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Globalization;
+using System.Net;
 
 namespace FlowerPlanet.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IClubRepository _clubRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IClubRepository clubRepository)
         {
             _logger = logger;
+            _clubRepository = clubRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var ipInfo = new IPInfo();
+            var homeViewModel = new HomeViewModel();
+            try
+            {
+                string url = "https://ipinfo.io?token=065e05aa7a932e";
+                var info = new WebClient().DownloadString(url);
+                ipInfo = JsonConvert.DeserializeObject<IPInfo>(info);
+                RegionInfo myRI1 = new RegionInfo(ipInfo.Country);
+                ipInfo.Country = myRI1.EnglishName;
+                homeViewModel.City = ipInfo.City;
+                homeViewModel.State = ipInfo.Region;
+                if (homeViewModel.State != null)
+                {
+                    homeViewModel.Clubs = await _clubRepository.GetClubByCity(homeViewModel.City);
+                }
+                else
+                {
+                    homeViewModel.Clubs = null;
+                }
+                return View(homeViewModel);
+            }
+            catch (Exception ex)
+            {
+                homeViewModel.Clubs = null;
+            }
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()
