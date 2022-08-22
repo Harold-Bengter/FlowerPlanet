@@ -139,8 +139,15 @@ public class ClubController : Controller
     public async Task<IActionResult> DeleteClub(int id)
     {
         var clubdetails = await _clubRepository.GetByIdAsync(id);
-        if (clubdetails == null) return View("Error");
+        if (clubdetails == null)
+        {
+            return View("Error");
+        }
 
+        if(!string.IsNullOrEmpty(clubdetails.Image))
+        {
+            _ = _photoService.DeletePhotoAsync(clubdetails.Image);
+        }
 
         _clubRepository.Delete(clubdetails);
         return RedirectToAction("Index");

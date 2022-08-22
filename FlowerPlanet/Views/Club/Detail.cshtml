@@ -5,50 +5,139 @@
 @{
 }
 
-<div class="container"
+<div class="main-container">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item"><a href="pages-app.html">Find</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Plant Club in @Model.Address.city, @Model.Address.state</li>
+              </ol>
+            </div>
+            <!--end of col-->
+          </div>
+          <!--end of row-->
+        </div>
+        <!--end of container-->
+      <section class="bg-white space-sm">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 mb-4 mb-sm-0">
+              <img alt="Image" src="@Model.Image" class="rounded img-fluid" />
+            </div>
+            <!--end of col-->
+            <div class="col-lg-4 d-flex flex-column justify-content-between mr-auto ml-auto">
+              <div>
+                <h1 class="mb-2">@Model.Title</h1>
+                <h2 class="lead mb-3">@Model.Address.city, @Model.Address.state</h2>
+                <div>
+                  <span class="badge badge-secondary mr-3">@Model.ClubCategory</span>
+                </div>
+                <div>
+                  <ul class="list-inline text-small d-inline-block mb-3">
+                    <li class="list-inline-item"> Owner: Harold Bengter</li>
+                    <br />
+                    <li class="list-inline-item"><i class="icon-message"></i> Number of likes: 3</li>
+                    <br />
+                    <li class="list-inline-item"><i class="icon-message"></i> Open to: Anyone who loves succulents!</li>
+                    <br />
+                    <li class="list-inline-item"><i class="icon-message"></i>Come join our club!</li>
 
-    <h1 class="my-4"> page heading
-        <small>Secondary text</small>
-</h1>
-
-
-<div class="row">
-    <div class="col-md-8">
-        <img class="img-fluid" src="https://images.unsplash.com/photo-1657112877156-8c17353c2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="">
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <div class="btn-group mb-2">
+                  <button type="button" class="btn btn-success btn-lg">Join Club</button>
+                </div>
+              </div>
+            </div>
+            <!--end of col-->
+          </div>
+          <!--end of row-->
+        </div>
+        <!--end of container-->
+      </section>
+      <!--end of section-->
+      <section class="space-sm">
+        <div class="container">
+          <div class="row justify-content-between">
+            <div class="col-12 col-md-8 col-lg-7">
+              <h5 class="mb-4">Overview</h5>
+              <article>
+                @Model.Description
+              </article>
+              <hr>
+              <h5 class="mb-4">Discussion</h5>
+              <div class="card">
+                <div class="card-header bg-secondary d-flex justify-content-between">
+                  <button class="btn btn-secondary" type="button" data-target="#comment-reply" data-toggle="collapse" aria-expanded="false" aria-controls="comment-reply">Post a reply</button>
+                  <form class="d-flex align-items-center">
+                    <span class="mr-2 text-muted text-small text-nowrap">Sort by:</span>
+                    <select class="custom-select">
+                      <option value="alpha">Alphabetical</option>
+                      <option value="old-new" selected>Newest</option>
+                      <option value="new-old">Popular</option>
+                      <option value="recent">Recently Updated</option>
+                    </select>
+                  </form>
+                </div>
+                <div class="collapse" id="comment-reply">
+                  <form class="card-body">
+                    <div class="form-group">
+                      <textarea class="form-control from-control-lg" id="comment-reply-text" name="comment-reply" rows="4" placeholder="Type your reply here"></textarea>
+                    </div>
+                    <div class="mb-2">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" name="notify-reply" id="check-notify">
+                        <label class="custom-control-label text-small" for="check-notify">Notify me when someone replies</label>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <button type="submit" class="btn btn-success mr-3">Submit reply</button>
+                      <a href="#comment-reply" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply">Cancel</a>
+                    </div>
+                  </form>
+                </div>
+                <ul class="list-group list-group-flush list-group-comments">
+                    
+                
+             </ul>
+         </div>
     </div>
-
-   <div class="col-md-4">
-       <h3 class="my-3">Project Description</h3>
-       <p>@Model.Description</p>
-       <h3 class="my-3">Project details</h3>
-        <ul>
-            <li></li>
-            <li>@Model.Address.Street</li>
-            <li>@Model.Address.city</li>
-            <li>@Model.Address.state</li>
-            <li>@Model.ClubCategory</li>
-        </ul>     
-     </div>
-
-  </div>
-
-<h3 class="my-4">Related projects</h3>
-
-<div class="row">
-
-    <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-            <img class="img-fluid" src="https://images.unsplash.com/photo-1657112877156-8c17353c2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="">
-        </a>
-    </div>
-    <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-            <img class="img-fluid" src="https://images.unsplash.com/photo-1657112877156-8c17353c2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="">
-        </a>
-    </div>
-    <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-            <img class="img-fluid" src="https://images.unsplash.com/photo-1657112877156-8c17353c2737?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="">
-        </a>
-    </div>
-</div>
+     <div class="col-12 col-md-4">
+           <div class="card">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                      <div><i class="icon-text-document mr-1"></i> Created</div>
+                      <span>08/19/22</span>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                      <div><i class="icon-edit mr-1"></i> Last updated</div>
+                      <span>08/22/22</span>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                      <div><i class="icon-thumbs-up mr-1"></i> Owner</div>
+                      <span>Harold Bengter</span>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                      <div><i class="icon-share mr-1"></i> Shares</div>
+                      <span>10</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              </div>
+                </div>
+                </div>
+                 </section>

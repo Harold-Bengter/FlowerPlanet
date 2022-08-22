@@ -11,30 +11,32 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FlowerPlanet</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="Index">Gardeners</a>
-                        </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Club" asp-action="Index">Club</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Shows" asp-action="Index">Shows</a>
-                        </li>
-                        @if (User.Identity.IsAuthenticated)
+  <div class="container-fluid">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FlowerPlanet</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        @if (User.Identity.IsAuthenticated)
+        {
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="Index">Gardeners</a>
+        </li>
+        }
+        <li class="nav-item">
+          <a class="nav-link text-dark" asp-area="" asp-controller="Club" asp-action="Index">Clubs</a>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link text-dark" asp-area="" asp-controller="Shows" asp-action="Index">Shows</a>
+        </li>
+        @if (User.Identity.IsAuthenticated)
                         {
                          <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard"
@@ -57,10 +59,13 @@
                                 asp-action="Register">Register</a>
                          </li>
                         }
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

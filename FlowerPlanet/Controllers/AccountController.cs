@@ -53,12 +53,12 @@ namespace FlowerPlanet.Controllers
             return View(loginViewModel);
 
         }
+        [HttpGet]
         public IActionResult Register() //Get
         {
             var response = new RegisterViewModel();
             return View(response);
         }
-
 
         [HttpPost]
 
@@ -85,12 +85,11 @@ namespace FlowerPlanet.Controllers
             return RedirectToAction("Index", "Shows");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index","Shows");
         }
-
     }
 }
